@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="python flask">
+  <meta name="description" content="index">
+  <meta name="author" content="">
+  <meta name="google" value="notranslate">
+  <base target="_self">
+  <link rel="shortcut icon" href="{{ app_root }}/favicon.ico">
+
+{%- if title %}
+  <title>{{ title }}</title>
+{%- else %}
+{%- block title %}
+{%- endblock %}
+{%- endif %}
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Site-specified styles -->
+  <link href="{{ app_root }}/css/default.css" rel="stylesheet">
+
+{%- block head %}
+{%- endblock %}
+{%- block head_base %}
+{%- endblock %}
+</head>
+
+<body>
+<div class="container-fluid">
+
+
+<!-- Two Interactive modals -->
+<div class="modal fade interactive" id="iaModal1" tabindex="-1" role="dialog" aria-labelledby="iaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fa fa-close"></i></span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade interactive" id="iaModal2" tabindex="-1" role="dialog" aria-labelledby="iaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fa fa-close"></i></span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- NavBar -->
+<nav class="navbar navbar-expand-md navbar-light fixed-top p-1 px-3" style="background-color: #d0d0ff;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div id="navbarNavDropdown" class="navbar-collapse collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ app_root }}/">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+{%- if name %}
+      <li class="nav-item dropdown">
+        <a class="nav-link p-0" href="{{ url_for('user_profile') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-user-circle fa-2x"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          <h3 class="dropdown-header">{{ name }}</h3>
+          <div role="separator" class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{{ url_for('user_profile') }}" data-toggle="modal" data-target="#iaModal1" data-dismiss="modal">
+            <i class="fa fa-user"></i> Profile
+          </a>
+          <div role="separator" class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{{ url_for('user_logout') }}" data-toggle="modal" data-target="#iaModal1" data-dismiss="modal" data-reload_on_close="location">
+            <i class="fa fa-sign-out"></i> Log out
+          </a>
+        </div>
+      </li>
+{%- else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('user_signin') }}" data-toggle="modal" data-target="#iaModal1" data-dismiss="modal" data-reload_on_close="location">
+          <i class="fa fa-sign-in"></i> Sign in
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link pl-0" href="{{ url_for('user_signup') }}" data-toggle="modal" data-target="#iaModal1" data-dismiss="modal" data-reload_on_close="location">
+          <i class="fa fa-user-plus"></i> Sign up
+        </a>
+      </li>
+{%- endif %}
+    </ul>
+  </div>
+</nav>
+
+
+{%- with messages = get_flashed_messages(with_categories=true) %}
+{%- if messages %}
+<div class="flashes">
+{%- for category, message in messages %}
+  <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+{%- endfor %}
+</div>
+{%- endif %}
+{%- endwith %}
+
+
+{%- block body %}
+{%- endblock %}
+{%- block body_base %}
+{%- endblock %}
+{%- block body_footer %}
+{%- endblock %}
+
+
+<!-- Bootstrap core JavaScript -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+<!-- Site-specified scripts -->
+<script src="{{ app_root }}/js/modal.js"></script>
+
+
+{%- block script %}
+{%- endblock %}
+{%- block script_base %}
+{%- endblock %}
+
+
+</div>
+</body>
+</html>

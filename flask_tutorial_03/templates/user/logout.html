@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{%- block body %}
+
+<p>
+Welcome, <i><b>{{ name }}</b></i>!<br />
+Do you wish to log out?<br />
+</p>
+
+<a href="{{ url_for('user_logout') }}?next={{ next }}">Logout</a>
+
+{%- endblock %}

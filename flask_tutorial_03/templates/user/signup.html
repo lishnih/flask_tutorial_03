@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{%- from "_formhelpers.html" import render_submit, render_field %}
+
+{%- block body %}
+
+{%- if form %}
+<h3>Sign up</h3>
+
+<form method="post" action="?next={{ next }}">
+  {{ render_field(form.name, size=40) }}
+  {{ render_field(form.email, size=40) }}
+  {{ render_field(form.password, size=40) }}
+  {{ render_field(form.confirm, size=40) }}
+  {{ render_submit(form.submit) }}
+</form>
+
+{%- if not modal %}
+<p>
+  If you registered you can <a href="{{ url_for('user_signin') }}">Sign in</a>
+</p>
+{%- endif %}
+{%- endif %}
+
+{%- endblock %}

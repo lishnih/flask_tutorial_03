@@ -1,0 +1,8 @@
+body {
+  padding-top: 48px;
+}
+
+.modal-body {
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}

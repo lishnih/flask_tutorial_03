@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{%- block body %}
+
+<p>
+Welcome, <i><b>{{ name }}</b></i>!<br />
+Are you sure you want to delete the account?<br />
+</p>
+
+<a href="{{ url_for('user_delete') }}?next={{ next }}">Delete</a>
+
+{%- endblock %}
